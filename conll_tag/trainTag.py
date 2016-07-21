@@ -6,8 +6,8 @@ class trainTag:
     wordNum = 0             # words num
     wordPosFreq = {}        # wordPosFreq[word] = {pos1:fre1,pos2:fre2}. word and its pos:frequency
     posFreq = {}            # posFreq[pos] = fre. pos and its frequency
-    posTransFreq = {}       # posTransFreq[pos] = {pos1:frq1,pos2:frq2}. frequency of pos transferring to posx
-    posTransPro = {}        # posTransPro[pos] = {pos1:pro1,pos2:pro2}. probability of pos transferring to posx
+    posTransFreq = {}       # posTransFreq[pos] = {pos1:frq1,pos2:frq2}. frequency of pos transferring to pos_x
+    posTransPro = {}        # posTransPro[pos] = {pos1:pro1,pos2:pro2}. probability of pos transferring to pos_x
     wordPosHeadFreq = {}    # wordPosHeadFreq[word] = {pos1:fre1,pos2:fre2}. word and its frequency of being the head of sentence as pos
     wordPosHeadPro = {}     # wordPosHeadPro[word] = {pos1:pro1,pos2:pro2}. word and its probability of being the head of sentence as pos
 

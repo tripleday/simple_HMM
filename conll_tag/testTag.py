@@ -17,7 +17,7 @@ class testTag:
     testSents = []          # sentences array
     wordPosFreq = {}        # wordPosFreq[word] = {pos1:fre1,pos2:fre2}. word and its pos:frequency
     posFreq = {}            # posFreq[pos] = fre. pos and its frequency
-    posTransPro = {}        # posTransPro[pos] = {pos1:pro1,pos2:pro2}. probability of pos transferring to posx
+    posTransPro = {}        # posTransPro[pos] = {pos1:pro1,pos2:pro2}. probability of pos transferring to pos_x
     wordPosHeadPro = {}     # wordPosHeadPro[word] = {pos1:pro1,pos2:pro2}. word and its probability of being the head of sentence as pos
     outputFile = ''         # output file
 
@@ -36,7 +36,7 @@ class testTag:
         self.outputFile = outputFile
 
     def test(self):
-        output = codecs.open(self.outputFile,'w+','utf-16')
+        output = codecs.open(self.outputFile,'w+','utf-8')
         print 'test:'
         for sent in self.testSents:
             wordList=[]# a list of wNode in one sentence
