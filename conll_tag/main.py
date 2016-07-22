@@ -16,20 +16,34 @@ if __name__ == '__main__':
     for line in f:
         # length += 1
         line = line.strip()
-        l = line.split(' ')
-        # l.pop(1)
-        pairList.append('/'.join(l[:2]))
-        if len(line) == 0:
+        if len(line) != 0:
+            l = line.split(' ')
+            pairList.append( [l[0], l[1]] )
+        else:
             r = random.random()
-            if r < 0.7:
-                trainSents.append(pairList)
-            else:
-                testSents.append(pairList)
-            print pairList
+            #if r < 0.7:
+            trainSents.append(pairList)
+            #else:
+            #    testSents.append(pairList)
             pairList = []
     f.close()
 
-    # tr = trainTag(trainSents)
-    # tr.train()
-    # ts = testTag(testSents, tr.wordPosFreq, tr.posFreq, tr.posTransPro, tr.wordPosHeadPro, 'output.txt')
-    # ts.test()
+    f = codecs.open(testFile, 'r', encoding='utf_8')
+    # length = 0
+    pairList = []
+    for line in f:
+        # length += 1
+        line = line.strip()
+        if len(line) != 0:
+            l = line.split(' ')
+            pairList.append( [l[0], l[1]] )
+        else:
+            r = random.random()
+            testSents.append(pairList)
+            pairList = []
+    f.close()
+
+    tr = trainTag(trainSents)
+    tr.train()
+    ts = testTag(testSents, tr.wordPosFreq, tr.posFreq, tr.posTransPro, tr.wordPosHeadPro, 'test_result.txt')
+    ts.test()

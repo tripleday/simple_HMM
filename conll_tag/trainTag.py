@@ -22,13 +22,13 @@ class trainTag:
             currPos = ''
 
             index = -1
-            pairList = sent.split('  ')# list of word/pos
-            for pair in pairList:
+            # pairList = sent.split('  ')# list of word/pos
+            for pair in sent:
                 self.wordNum += 1
                 index += 1
 
-                word = pair.split('/')[0]# word
-                pos = pair.split('/')[1]# pos
+                word = pair[0]# word
+                pos = pair[1]# pos
 
                 # 统计该词性的频数
                 if self.posFreq.has_key(pos):

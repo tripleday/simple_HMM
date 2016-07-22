@@ -77,8 +77,12 @@ class testTag:
                                 wNode.posNodeList.append(pNode)
                     else:
                         # 首节点不在词典中
-                        pNode=posNode('unknown',30,['unknown'])
-                        wNode.posNodeList.append(pNode)
+                        # pNode=posNode('unknown',30,['unknown'])
+                        # wNode.posNodeList.append(pNode)
+                        posList = self.posFreq.keys()# 全局所有词性
+                        for p in posList:
+                            pNode=posNode(p,30,[p])
+                            wNode.posNodeList.append(pNode)
 
                     wordList.append(wNode)
                 else:
@@ -127,6 +131,7 @@ class testTag:
                         preWNode = wordList[index-1]
                         prePosNodeList = preWNode.posNodeList
 
+                        '''
                         minCost = 100000000
                         maxPreNode = posNode('',0,[])
 
@@ -147,6 +152,39 @@ class testTag:
                         minCost += 0# 转移概率为1，代价0，发射概率的代价忽略为0
                         pNode = posNode('unknown',minCost,path)
                         wNode.posNodeList.append(pNode)
+                        '''
+
+                        posList = self.posFreq.keys()# 全局所有词性
+                        # 对于每一种词性，计算最优路径
+                        for p in posList:
+                            minCost = 100000000
+                            maxPreNode = posNode('',0,[])
+
+                            # 对前一个节点每个词性，计算viterbi变量
+                            for pn in prePosNodeList:
+                                prePos = pn.pos# 前一个节点的某词性
+                                preCost = pn.cost# 前一个节点取该词性的费用
+
+                                # 转移概率
+                                transProb = math.exp(-30)
+                                if self.posTransPro.has_key(prePos):
+                                    if self.posTransPro[prePos].has_key(p):
+                                        transProb = self.posTransPro[prePos][p]
+
+                                cost = preCost + (-math.log(transProb))
+                                # 记录概率最大的词性以及路径（即费用最小）
+                                if cost < minCost:
+                                    minCost = cost
+                                    maxPreNode = pn
+
+                            # 记录通向word词性p的最佳路径
+                            # path = maxPreNode.bestPath
+                            path=[]
+                            for e in maxPreNode.bestPath:
+                                path.append(e)
+                            path.append(p)
+                            pNode = posNode(p,minCost,path)
+                            wNode.posNodeList.append(pNode)
 
                     wordList.append(wNode)
 
