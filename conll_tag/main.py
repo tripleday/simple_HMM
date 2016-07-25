@@ -38,7 +38,6 @@ if __name__ == '__main__':
             l = line.split(' ')
             pairList.append( [l[0], l[1]] )
         else:
-            r = random.random()
             testSents.append(pairList)
             pairList = []
     f.close()
