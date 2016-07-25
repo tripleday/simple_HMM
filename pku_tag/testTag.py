@@ -36,7 +36,7 @@ class testTag:
         self.outputFile = outputFile
 
     def test(self):
-        output = codecs.open(self.outputFile,'w+','utf-16')
+        output = codecs.open(self.outputFile,'w+','utf-8')
         print 'test:'
         for sent in self.testSents:
             wordList=[]# a list of wNode in one sentence
